@@ -16,97 +16,121 @@
   </header>
 
   <main>
-    <section class="card">
-      <h2>🏨 Habitaciones</h2>
-      <div class="room">Habitación 1: Marta + Marina</div>
-      <div class="room">Habitación 2: Elena + Laura</div>
-    </section>
+    <nav class="tabs">
+      <button class="tab-button active" onclick="openTab('preparativos')">🧴 Preparativos</button>
+      <button class="tab-button" onclick="openTab('plan')">📅 Plan del fin de semana</button>
+      <button class="tab-button" onclick="openTab('habitaciones')">🏨 Habitaciones y gastos</button>
+    </nav>
 
-    <section class="card">
-      <h2>📅 Plan del Fin de Semana</h2>
-
-      <div class="day">
-        <h3>Viernes 26</h3>
-        <p>Pisci hotel y chorros 💦</p>
-      </div>
-
-      <div class="day">
-        <h3>Sábado 27</h3>
-
-        <div class="person marta">
-          <strong>Marta</strong>
-          <p>11:00 Exfoliación 25’</p>
-          <p>11:30 Masaje circulatorio 25’</p>
-        </div>
-
-        <div class="person marina">
-          <strong>Marina</strong>
-          <p>11:30 Baño aromático 15’</p>
-          <p>12:00 Masaje neurosedante 25’</p>
-        </div>
-
-        <div class="person laura">
-          <strong>Laura</strong>
-          <p>12:00 Masaje neurosedante 25’</p>
-        </div>
-
-        <div class="person elena">
-          <strong>Elena</strong>
-          <p>Pendiente de elegir tratamiento 🌸</p>
-        </div>
-
-        <p class="special">🌊 Lago a saco después de comer</p>
-      </div>
-
-      <div class="day">
-        <h3>Domingo 28</h3>
-        <p>Desayuno, relax y vuelta a la realidad 😒</p>
+    <!-- PREPARATIVOS -->
+    <section id="preparativos" class="tab-content active">
+      <div class="card">
+        <h2>🧖 Preparativos</h2>
+        <p>Aquí podrás añadir maletas, bikinis, bebidas, outfits, dramas logísticos y todo ese caos organizado.</p>
+        <textarea placeholder="Escribe aquí tus preparativos..."></textarea>
       </div>
     </section>
 
-    <section class="card">
-      <h2>💸 Gastos</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Prima</th>
-            <th>Habitación</th>
-            <th>Tratamientos</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Marta</td>
-            <td>160€</td>
-            <td>103€</td>
-            <td>263€</td>
-          </tr>
-          <tr>
-            <td>Marina</td>
-            <td>160€</td>
-            <td>74€</td>
-            <td>234€</td>
-          </tr>
-          <tr>
-            <td>Laura</td>
-            <td>160€</td>
-            <td>44€</td>
-            <td>204€</td>
-          </tr>
-          <tr>
-            <td>Elena</td>
-            <td>160€</td>
-            <td>Pendiente</td>
-            <td>160€ +</td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- PLAN -->
+    <section id="plan" class="tab-content">
+      <div class="card">
+        <h2>📅 Plan del Fin de Semana</h2>
+
+        <div class="day-buttons">
+          <button onclick="openDay('viernes')">Viernes 26</button>
+          <button onclick="openDay('sabado')">Sábado 27</button>
+          <button onclick="openDay('domingo')">Domingo 28</button>
+        </div>
+
+        <div id="viernes" class="day-content active-day">
+          <h3>Viernes 26</h3>
+          <p>💦 Pisci hotel y chorros</p>
+        </div>
+
+        <div id="sabado" class="day-content">
+          <h3>Sábado 27</h3>
+
+          <div class="person marta">
+            <strong>Marta</strong>
+            <p>11:00 Exfoliación 25’</p>
+            <p>11:30 Masaje circulatorio 25’</p>
+          </div>
+
+          <div class="person marina">
+            <strong>Marina</strong>
+            <p>11:30 Baño aromático 15’</p>
+            <p>12:00 Masaje neurosedante 25’</p>
+          </div>
+
+          <div class="person laura">
+            <strong>Laura</strong>
+            <p>12:00 Masaje neurosedante 25’</p>
+          </div>
+
+          <div class="person elena">
+            <strong>Elena</strong>
+            <p>Pendiente de elegir tratamiento 🌸</p>
+          </div>
+
+          <p class="special">🌊 Lago a saco después de comer</p>
+        </div>
+
+        <div id="domingo" class="day-content">
+          <h3>Domingo 28</h3>
+          <p>☕ Desayuno relajado</p>
+          <p>🧖 Último momento spa</p>
+          <p>🚗 Vuelta a casa</p>
+        </div>
+      </div>
     </section>
 
-    <section class="card">
-      <h2>🍹 Pendiente</h2>
-      <textarea placeholder="Bebidas, snacks, dramas familiares..."></textarea>
+    <!-- HABITACIONES -->
+    <section id="habitaciones" class="tab-content">
+      <div class="card">
+        <h2>🏨 Habitaciones</h2>
+        <div class="room">Habitación 1: Marta + Marina</div>
+        <div class="room">Habitación 2: Elena + Laura</div>
+      </div>
+
+      <div class="card">
+        <h2>💸 Gastos</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Prima</th>
+              <th>Habitación</th>
+              <th>Tratamientos</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Marta</td>
+              <td>160€</td>
+              <td>103€</td>
+              <td>263€</td>
+            </tr>
+            <tr>
+              <td>Marina</td>
+              <td>160€</td>
+              <td>74€</td>
+              <td>234€</td>
+            </tr>
+            <tr>
+              <td>Laura</td>
+              <td>160€</td>
+              <td>44€</td>
+              <td>204€</td>
+            </tr>
+            <tr>
+              <td>Elena</td>
+              <td>160€</td>
+              <td>Pendiente</td>
+              <td>160€ +</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
   </main>
 

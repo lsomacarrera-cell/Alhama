@@ -12,7 +12,7 @@ function updateCountdown() {
   }
 
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  countdown.innerHTML = `Quedan ${days} días para el finde spa 🧖‍♀️`;
+  countdown.innerHTML = `Quedan ${days} días para el finde más esperado del año 🧖‍♀️`;
 }
 
 updateCountdown();

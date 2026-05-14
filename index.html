@@ -85,87 +85,121 @@
     </section>
 
     <!-- HABITACIONES Y GASTOS -->
-    <section id="habitaciones" class="tab-content">
-      <div class="card">
-        <h2>🏨 Habitaciones</h2>
-        <div class="room">Habitación 1: Marta + Marina</div>
-        <div class="room">Habitación 2: Elena + Laura</div>
+<section id="habitaciones" class="tab-content">
+  <div class="card">
+    <h2>🏨 Habitaciones</h2>
+    <div class="room">Habitación 1: Marta + Marina</div>
+    <div class="room">Habitación 2: Elena + Laura</div>
+  </div>
+
+  <!-- GASTOS INDIVIDUALES -->
+  <div class="card">
+    <h2>💸 Gastos individuales</h2>
+
+    <!-- TABLA DESKTOP -->
+    <div class="desktop-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Prima</th>
+            <th>Habitación</th>
+            <th>Tratamientos</th>
+            <th>Otros gastos</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Marta</td>
+            <td>175€</td>
+            <td>0€</td>
+            <td id="otros-marta">0€</td>
+            <td id="total-marta">175€</td>
+          </tr>
+          <tr>
+            <td>Marina</td>
+            <td>175€</td>
+            <td>0€</td>
+            <td id="otros-marina">0€</td>
+            <td id="total-marina">175€</td>
+          </tr>
+          <tr>
+            <td>Laura</td>
+            <td>175€</td>
+            <td>72€</td>
+            <td id="otros-laura">0€</td>
+            <td id="total-laura">247€</td>
+          </tr>
+          <tr>
+            <td>Elena</td>
+            <td>175€</td>
+            <td>155€</td>
+            <td id="otros-elena">0€</td>
+            <td id="total-elena">330€</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- TARJETAS MÓVIL -->
+    <div class="mobile-cards">
+      <div class="gasto-card">
+        <h3>Marta</h3>
+        <p>Habitación: 175€</p>
+        <p>Tratamientos: 0€</p>
+        <p>Otros gastos: <span id="mobile-otros-marta">0€</span></p>
+        <p><strong>Total: <span id="mobile-total-marta">175€</span></strong></p>
       </div>
 
-<div class="card">
-  <h2>💸 Gastos individuales</h2>
+      <div class="gasto-card">
+        <h3>Marina</h3>
+        <p>Habitación: 175€</p>
+        <p>Tratamientos: 0€</p>
+        <p>Otros gastos: <span id="mobile-otros-marina">0€</span></p>
+        <p><strong>Total: <span id="mobile-total-marina">175€</span></strong></p>
+      </div>
 
-  <!-- TABLA DESKTOP -->
-  <div class="desktop-table">
-    <table>
-      <thead>
-        <tr>
-          <th>Prima</th>
-          <th>Habitación</th>
-          <th>Tratamientos</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Marta</td>
-          <td>175€</td>
-          <td>0€</td>
-          <td>175€</td>
-        </tr>
-        <tr>
-          <td>Marina</td>
-          <td>175€</td>
-          <td>0€</td>
-          <td>175€</td>
-        </tr>
-        <tr>
-          <td>Laura</td>
-          <td>175€</td>
-          <td>72€</td>
-          <td>247€</td>
-        </tr>
-        <tr>
-          <td>Elena</td>
-          <td>175€</td>
-          <td>155€</td>
-          <td>330€</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+      <div class="gasto-card">
+        <h3>Laura</h3>
+        <p>Habitación: 175€</p>
+        <p>Tratamientos: 72€</p>
+        <p>Otros gastos: <span id="mobile-otros-laura">0€</span></p>
+        <p><strong>Total: <span id="mobile-total-laura">247€</span></strong></p>
+      </div>
 
-  <!-- TARJETAS MÓVIL -->
-  <div class="mobile-cards">
-    <div class="gasto-card">
-      <h3>Marta</h3>
-      <p>Habitación: 175€</p>
-      <p>Tratamientos: 0€</p>
-      <p><strong>Total: 175€</strong></p>
-    </div>
-
-    <div class="gasto-card">
-      <h3>Marina</h3>
-      <p>Habitación: 175€</p>
-      <p>Tratamientos: 0€</p>
-      <p><strong>Total: 175€</strong></p>
-    </div>
-
-    <div class="gasto-card">
-      <h3>Laura</h3>
-      <p>Habitación: 175€</p>
-      <p>Tratamientos: 72€</p>
-      <p><strong>Total: 247€</strong></p>
-    </div>
-
-    <div class="gasto-card">
-      <h3>Elena</h3>
-      <p>Habitación: 175€</p>
-      <p>Tratamientos: 155€</p>
-      <p><strong>Total: 330€</strong></p>
+      <div class="gasto-card">
+        <h3>Elena</h3>
+        <p>Habitación: 175€</p>
+        <p>Tratamientos: 155€</p>
+        <p>Otros gastos: <span id="mobile-otros-elena">0€</span></p>
+        <p><strong>Total: <span id="mobile-total-elena">330€</span></strong></p>
+      </div>
     </div>
   </div>
-</div>
+
+  <!-- GASTOS GRUPALES -->
+  <div class="card">
+    <h2>🍹 Gastos grupales</h2>
+
+    <div class="group-expense">
+      <label for="bebidas">Bebidas (€)</label>
+      <input type="number" id="bebidas" value="0" min="0" oninput="updateGroupExpenses()">
+    </div>
+
+    <div class="group-expense">
+      <label for="comida">Comida sábado (€)</label>
+      <input type="number" id="comida" value="0" min="0" oninput="updateGroupExpenses()">
+    </div>
+
+    <div class="group-total">
+      Total grupal: <span id="group-total">0€</span>
+    </div>
+
+    <div class="group-total">
+      Gasto por persona: <span id="per-person">0€</span>
+    </div>
+  </div>
+</section>
     </section>
   </main>
 

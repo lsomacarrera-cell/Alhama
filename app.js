@@ -1,7 +1,12 @@
 const countdown = document.getElementById("countdown");
+const music = document.getElementById("background-music");
+const musicToggle = document.getElementById("music-toggle");
+
+let musicPlaying = false;
 
 const tripDate = new Date("2026-06-26T00:00:00");
 
+/* CONTADOR */
 function updateCountdown() {
   const now = new Date();
   const diff = tripDate - now;
@@ -12,43 +17,90 @@ function updateCountdown() {
   }
 
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  countdown.innerHTML = `Quedan ${days} días para el finde del año🧖‍♀️`;
+  countdown.innerHTML = `Quedan ${days} días para el finde del año 🧖‍♀️`;
 }
 
 updateCountdown();
 setInterval(updateCountdown, 1000 * 60 * 60);
 
+/* MÚSICA */
+function playMusic() {
+  if (music && !musicPlaying) {
+    music.play()
+      .then(() => {
+        musicPlaying = true;
+        if (musicToggle) musicToggle.textContent = "🔊";
+      })
+      .catch(() => {
+        console.log("El navegador bloqueó autoplay hasta interacción humana, como siempre.");
+      });
+  }
+}
+
+function toggleMusic() {
+  if (!music) return;
+
+  if (music.paused) {
+    music.play()
+      .then(() => {
+        musicPlaying = true;
+        if (musicToggle) musicToggle.textContent = "🔊";
+      });
+  } else {
+    music.pause();
+    musicPlaying = false;
+    if (musicToggle) musicToggle.textContent = "🔇";
+  }
+}
+
+/* PESTAÑAS */
 function openTab(tabName, element) {
+  playMusic();
+
   const contents = document.querySelectorAll(".tab-content");
   const buttons = document.querySelectorAll(".tab-button");
 
   contents.forEach(content => content.classList.remove("active"));
   buttons.forEach(button => button.classList.remove("active"));
 
-  document.getElementById(tabName).classList.add("active");
-  element.classList.add("active");
+  const selectedTab = document.getElementById(tabName);
+
+  if (selectedTab) {
+    selectedTab.classList.add("active");
+  }
+
+  if (element) {
+    element.classList.add("active");
+  }
 }
 
+/* DÍAS */
 function openDay(dayName) {
+  playMusic();
+
   const days = document.querySelectorAll(".day-content");
   days.forEach(day => day.classList.remove("active-day"));
 
-  document.getElementById(dayName).classList.add("active-day");
+  const selectedDay = document.getElementById(dayName);
+
+  if (selectedDay) {
+    selectedDay.classList.add("active-day");
+  }
 }
 
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("service-worker.js");
-}
-
+/* GASTOS GRUPALES */
 function updateGroupExpenses() {
-  const bebidas = parseFloat(document.getElementById("bebidas").value) || 0;
-  const comida = parseFloat(document.getElementById("comida").value) || 0;
+  const bebidas = parseFloat(document.getElementById("bebidas")?.value) || 0;
+  const comida = parseFloat(document.getElementById("comida")?.value) || 0;
 
   const totalGroup = bebidas + comida;
   const perPerson = totalGroup / 4;
 
-  document.getElementById("group-total").textContent = `${totalGroup}€`;
-  document.getElementById("per-person").textContent = `${perPerson.toFixed(2)}€`;
+  const groupTotal = document.getElementById("group-total");
+  const perPersonDisplay = document.getElementById("per-person");
+
+  if (groupTotal) groupTotal.textContent = `${totalGroup.toFixed(2)}€`;
+  if (perPersonDisplay) perPersonDisplay.textContent = `${perPerson.toFixed(2)}€`;
 
   const people = [
     { name: "marta", room: 175, treatment: 0 },
@@ -60,10 +112,20 @@ function updateGroupExpenses() {
   people.forEach(person => {
     const total = person.room + person.treatment + perPerson;
 
-    document.getElementById(`otros-${person.name}`).textContent = `${perPerson.toFixed(2)}€`;
-    document.getElementById(`total-${person.name}`).textContent = `${total.toFixed(2)}€`;
+    const otros = document.getElementById(`otros-${person.name}`);
+    const totalEl = document.getElementById(`total-${person.name}`);
+    const mobileOtros = document.getElementById(`mobile-otros-${person.name}`);
+    const mobileTotal = document.getElementById(`mobile-total-${person.name}`);
 
-    document.getElementById(`mobile-otros-${person.name}`).textContent = `${perPerson.toFixed(2)}€`;
-    document.getElementById(`mobile-total-${person.name}`).textContent = `${total.toFixed(2)}€`;
+    if (otros) otros.textContent = `${perPerson.toFixed(2)}€`;
+    if (totalEl) totalEl.textContent = `${total.toFixed(2)}€`;
+
+    if (mobileOtros) mobileOtros.textContent = `${perPerson.toFixed(2)}€`;
+    if (mobileTotal) mobileTotal.textContent = `${total.toFixed(2)}€`;
   });
+}
+
+/* SERVICE WORKER */
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js");
 }

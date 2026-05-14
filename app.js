@@ -39,3 +39,31 @@ function openDay(dayName) {
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("service-worker.js");
 }
+
+function updateGroupExpenses() {
+  const bebidas = parseFloat(document.getElementById("bebidas").value) || 0;
+  const comida = parseFloat(document.getElementById("comida").value) || 0;
+
+  const totalGroup = bebidas + comida;
+  const perPerson = totalGroup / 4;
+
+  document.getElementById("group-total").textContent = `${totalGroup}€`;
+  document.getElementById("per-person").textContent = `${perPerson.toFixed(2)}€`;
+
+  const people = [
+    { name: "marta", room: 175, treatment: 0 },
+    { name: "marina", room: 175, treatment: 0 },
+    { name: "laura", room: 175, treatment: 72 },
+    { name: "elena", room: 175, treatment: 155 }
+  ];
+
+  people.forEach(person => {
+    const total = person.room + person.treatment + perPerson;
+
+    document.getElementById(`otros-${person.name}`).textContent = `${perPerson.toFixed(2)}€`;
+    document.getElementById(`total-${person.name}`).textContent = `${total.toFixed(2)}€`;
+
+    document.getElementById(`mobile-otros-${person.name}`).textContent = `${perPerson.toFixed(2)}€`;
+    document.getElementById(`mobile-total-${person.name}`).textContent = `${total.toFixed(2)}€`;
+  });
+}

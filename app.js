@@ -59,22 +59,6 @@ function toggleMusic() {
   }
 }
 
-function toggleMusic() {
-  if (!music) return;
-
-  if (music.paused) {
-    music.play()
-      .then(() => {
-        musicPlaying = true;
-        if (musicToggle) musicToggle.textContent = "🔊";
-      });
-  } else {
-    music.pause();
-    musicPlaying = false;
-    if (musicToggle) musicToggle.textContent = "🔇";
-  }
-}
-
 /* PESTAÑAS */
 function openTab(tabName, element) {
   playMusic();

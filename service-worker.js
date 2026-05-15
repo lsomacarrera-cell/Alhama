@@ -6,7 +6,7 @@ const urlsToCache = [
   "./styles.css",
   "./app.js",
   "./manifest.json",
-  "./alhama-song.mp3"
+  "./alhama-song.mpeg"
 ];
 
 self.addEventListener("install", event => {

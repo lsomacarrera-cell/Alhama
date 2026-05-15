@@ -1,8 +1,4 @@
 const countdown = document.getElementById("countdown");
-const music = document.getElementById("background-music");
-const musicToggle = document.getElementById("music-toggle");
-
-let musicPlaying = false;
 
 const tripDate = new Date("2026-06-26T00:00:00");
 
@@ -23,46 +19,8 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000 * 60 * 60);
 
-/* MÚSICA */
-function playMusic() {
-  if (!music) {
-    alert("No se encontró el archivo de música.");
-    return;
-  }
-
-  music.volume = 1.0;
-
-  music.play()
-    .then(() => {
-      musicPlaying = true;
-      if (musicToggle) musicToggle.textContent = "🔊";
-      console.log("Música reproduciéndose");
-    })
-    .catch(error => {
-      console.log("Error reproduciendo:", error);
-      alert("El navegador está bloqueando el audio o el archivo no carga.");
-    });
-}
-
-function toggleMusic() {
-  if (!music) {
-    alert("No se encontró el audio.");
-    return;
-  }
-
-  if (music.paused) {
-    playMusic();
-  } else {
-    music.pause();
-    musicPlaying = false;
-    if (musicToggle) musicToggle.textContent = "🔇";
-  }
-}
-
 /* PESTAÑAS */
 function openTab(tabName, element) {
-  playMusic();
-
   const contents = document.querySelectorAll(".tab-content");
   const buttons = document.querySelectorAll(".tab-button");
 
@@ -82,8 +40,6 @@ function openTab(tabName, element) {
 
 /* DÍAS */
 function openDay(dayName) {
-  playMusic();
-
   const days = document.querySelectorAll(".day-content");
   days.forEach(day => day.classList.remove("active-day"));
 
@@ -129,6 +85,38 @@ function updateGroupExpenses() {
     if (mobileOtros) mobileOtros.textContent = `${perPerson.toFixed(2)}€`;
     if (mobileTotal) mobileTotal.textContent = `${total.toFixed(2)}€`;
   });
+}
+
+/* MÚSICA - estilo ZeroStress */
+
+// Primer toque activa música
+document.addEventListener("click", () => {
+  const audio = document.getElementById("musica");
+  const btn = document.getElementById("music-toggle");
+
+  if (!audio) return;
+
+  if (audio.paused) {
+    audio.play().then(() => {
+      if (btn) btn.textContent = "🔇";
+    }).catch(() => {});
+  }
+}, { once: true });
+
+// Botón parar/reanudar
+function toggleMusica() {
+  const audio = document.getElementById("musica");
+  const btn = document.getElementById("music-toggle");
+
+  if (!audio) return;
+
+  if (audio.paused) {
+    audio.play().catch(() => {});
+    if (btn) btn.textContent = "🔇";
+  } else {
+    audio.pause();
+    if (btn) btn.textContent = "🎵";
+  }
 }
 
 /* SERVICE WORKER */

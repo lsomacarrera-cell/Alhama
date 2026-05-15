@@ -11,32 +11,35 @@
 <body>
 
   <!-- AUDIO -->
-<audio id="background-music" controls preload="auto" playsinline style="width:90%; margin:20px auto; display:block;">
-  <source src="alhama-song.mp3" type="audio/mpeg">
-  Tu navegador no soporta audio.
-</audio>
+  <audio id="musica" src="./alhama-song.mp3" loop></audio>
 
   <!-- BOTÓN ALTAVOZ -->
-<button id="music-toggle" onclick="alert('Botón detectado'); toggleMusic();">🔊</button>
+  <button id="music-toggle" onclick="toggleMusica()">🎵</button>
 
+  <!-- CABECERA -->
   <header class="hero">
     <h1>💦 App Alhama 🍹</h1>
     <p>Fin de semana de relax | 26 - 28 Junio 2026</p>
     <div id="countdown"></div>
   </header>
 
+  <!-- PESTAÑAS -->
+  <nav class="tabs">
+    <button class="tab-button active" onclick="openTab('preparativos', this)">🧳 Preparativos</button>
+    <button class="tab-button" onclick="openTab('plan', this)">🗓️ Plan del fin de semana</button>
+    <button class="tab-button" onclick="openTab('habitaciones', this)">🏨 Habitaciones y gastos</button>
+  </nav>
+
   <main>
-    <nav class="tabs">
-      <button class="tab-button active" onclick="playMusic(); openTab('preparativos', this)">🧳 Preparativos</button>
-      <button class="tab-button" onclick="playMusic(); openTab('plan', this)">📅 Plan del fin de semana</button>
-      <button class="tab-button" onclick="playMusic(); openTab('habitaciones', this)">🏨 Habitaciones y gastos</button>
-    </nav>
 
     <!-- PREPARATIVOS -->
     <section id="preparativos" class="tab-content active">
       <div class="card">
-        <h2>🧳Preparativos</h2>
-        <p>Aquí puedes añadir todo lo que no quieres que se te olvide meter en la maleta: juegos, disfraces, cremas, chanclas,... tranquila que Marina lleva gorros para todas😉</p>
+        <h2>🧳 Preparativos</h2>
+        <p>
+          Aquí puedes añadir todo lo que no quieres que se te olvide meter en la maleta:
+          juegos, disfraces, cremas, chanclas,... tranquila que Marina lleva gorros para todas 😊
+        </p>
         <textarea placeholder="Escribe aquí tus preparativos..."></textarea>
       </div>
     </section>
@@ -47,67 +50,60 @@
         <h2>📅 Plan del Fin de Semana</h2>
 
         <div class="day-buttons">
-          <button onclick="playMusic(); openDay('viernes')">Viernes 26</button>
-          <button onclick="playMusic(); openDay('sabado')">Sábado 27</button>
-          <button onclick="playMusic(); openDay('domingo')">Domingo 28</button>
+          <button onclick="openDay('viernes')">Viernes 26</button>
+          <button onclick="openDay('sabado')">Sábado 27</button>
+          <button onclick="openDay('domingo')">Domingo 28</button>
         </div>
 
+        <!-- VIERNES -->
         <div id="viernes" class="day-content active-day">
           <h3>Viernes 26</h3>
-          <p>💦 Según lleguemos a la pisci y a las hh al spa</p>
+          <ul>
+            <li>Piscina hotel + chorros</li>
+            <li>Llegada y check-in</li>
+            <li>Relax, risas y primeras copas</li>
+          </ul>
         </div>
 
+        <!-- SÁBADO -->
         <div id="sabado" class="day-content">
           <h3>Sábado 27</h3>
-
-          <div class="person marta">
-            <strong>Marta</strong>
-            <p>hh:00 Tratamiento</p>
-            <p>hh:00 Tratamiento</p>
-          </div>
-
-          <div class="person marina">
-            <strong>Marina</strong>
-            <p>hh:00 Baño aromático 15’</p>
-            <p>hh:00 Tratamiento</p>
-          </div>
-
-          <div class="person laura">
-            <strong>Laura</strong>
-            <p>hh:00 Envolvimiento</p>
-          </div>
-
-          <div class="person elena">
-            <strong>Elena</strong>
-            <p>hh:00 Talassa</p>
-            <p>hh:00 Pindas</p>
-          </div>
-
-          <p class="special">🌊 Después de comer... súper tarde en el lago</p>
+          <ul>
+            <li>Marta: 11h Exfoliación + 11:30h Masaje circulatorio</li>
+            <li>Marina: 11:30h Baño aromático + 12h Masaje neurosedante</li>
+            <li>Laura: 12h Masaje neurosedante</li>
+            <li>Elena: Tratamiento pendiente</li>
+            <li>Lago a saco después de comer</li>
+          </ul>
         </div>
 
+        <!-- DOMINGO -->
         <div id="domingo" class="day-content">
           <h3>Domingo 28</h3>
-          <p>☕ Desayuno relajado</p>
-          <p>😭 Empieza la cuenta atrás para el próximo finde del año</p>
-          <p>🚗 Vuelta a casa</p>
+          <ul>
+            <li>Desayuno</li>
+            <li>Últimos baños</li>
+            <li>Fotos, despedida y promesas de repetir</li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <!-- HABITACIONES Y GASTOS -->
+    <!-- HABITACIONES -->
     <section id="habitaciones" class="tab-content">
+      
+      <!-- HABITACIONES -->
       <div class="card">
         <h2>🏨 Habitaciones</h2>
-        <div class="room">Habitación 1: Marta + Marina</div>
-        <div class="room">Habitación 2: Elena + Laura</div>
+        <p><strong>Habitación 1:</strong> Marta + Marina</p>
+        <p><strong>Habitación 2:</strong> Elena + Laura</p>
       </div>
 
       <!-- GASTOS INDIVIDUALES -->
       <div class="card">
         <h2>💸 Gastos individuales</h2>
 
-        <div class="desktop-table">
+        <div class="expense-table desktop-only">
           <table>
             <thead>
               <tr>
@@ -151,9 +147,9 @@
           </table>
         </div>
 
-        <!-- TARJETAS MÓVIL -->
-        <div class="mobile-cards">
-          <div class="gasto-card">
+        <!-- MÓVIL -->
+        <div class="mobile-expenses">
+          <div class="expense-card">
             <h3>Marta</h3>
             <p>Habitación: 175€</p>
             <p>Tratamientos: 0€</p>
@@ -161,7 +157,7 @@
             <p><strong>Total: <span id="mobile-total-marta">175€</span></strong></p>
           </div>
 
-          <div class="gasto-card">
+          <div class="expense-card">
             <h3>Marina</h3>
             <p>Habitación: 175€</p>
             <p>Tratamientos: 0€</p>
@@ -169,7 +165,7 @@
             <p><strong>Total: <span id="mobile-total-marina">175€</span></strong></p>
           </div>
 
-          <div class="gasto-card">
+          <div class="expense-card">
             <h3>Laura</h3>
             <p>Habitación: 175€</p>
             <p>Tratamientos: 72€</p>
@@ -177,7 +173,7 @@
             <p><strong>Total: <span id="mobile-total-laura">247€</span></strong></p>
           </div>
 
-          <div class="gasto-card">
+          <div class="expense-card">
             <h3>Elena</h3>
             <p>Habitación: 175€</p>
             <p>Tratamientos: 155€</p>
@@ -189,27 +185,24 @@
 
       <!-- GASTOS GRUPALES -->
       <div class="card">
-        <h2>🍹 Gastos grupales</h2>
+        <h2>🍷 Gastos grupales</h2>
 
         <div class="group-expense">
-          <label for="bebidas">Bebidas (€)</label>
-          <input type="number" id="bebidas" value="0" min="0" oninput="updateGroupExpenses()">
-        </div>
+          <label>Bebidas:</label>
+          <input type="number" id="bebidas" placeholder="€" oninput="updateGroupExpenses()">
 
-        <div class="group-expense">
-          <label for="comida">Comida sábado (€)</label>
-          <input type="number" id="comida" value="0" min="0" oninput="updateGroupExpenses()">
+          <label>Comida sábado:</label>
+          <input type="number" id="comida" placeholder="€" oninput="updateGroupExpenses()">
         </div>
 
         <div class="group-total">
-          Total grupal: <span id="group-total">0€</span>
-        </div>
-
-        <div class="group-total">
-          Gasto por persona: <span id="per-person">0€</span>
+          <p>Total grupal: <strong id="group-total">0€</strong></p>
+          <p>Por persona: <strong id="per-person">0€</strong></p>
         </div>
       </div>
+
     </section>
+
   </main>
 
   <script src="app.js"></script>

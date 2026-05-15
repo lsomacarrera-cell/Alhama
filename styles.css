@@ -1,161 +1,203 @@
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
 }
 
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom, #f9d5ec, #d0f4ea);
+  background: linear-gradient(to bottom, #f7d9eb, #d7f3ef);
   color: #333;
-  overflow-x: hidden;
+  min-height: 100vh;
 }
 
+/* HERO */
 .hero {
   text-align: center;
-  padding: 2rem 1rem;
-  background: rgba(255,255,255,0.4);
-  backdrop-filter: blur(10px);
+  padding: 60px 20px;
+  background: rgba(255,255,255,0.25);
 }
 
-h1 {
-  margin: 0;
-  font-size: 2.8rem;
+.hero h1 {
+  font-size: 4rem;
+  margin-bottom: 15px;
 }
 
 .hero p {
-  font-size: 1.2rem;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
 }
 
 #countdown {
-  margin-top: 1rem;
-  font-size: 1.4rem;
+  font-size: 2.2rem;
   font-weight: bold;
 }
 
-main {
-  padding: 1rem;
-  max-width: 1100px;
-  margin: auto;
-  width: 100%;
+/* BOTÓN MÚSICA */
+#music-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 90px;
+  height: 90px;
+  border: none;
+  border-radius: 50%;
+  background: white;
+  font-size: 3rem;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  z-index: 9999;
 }
 
-.card {
-  background: rgba(255,255,255,0.75);
-  border-radius: 24px;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  width: 100%;
-  overflow: hidden;
-}
-
-h2 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-}
-
-h3 {
-  font-size: 1.4rem;
-  margin-top: 0;
-}
-
+/* TABS */
 .tabs {
   display: flex;
   justify-content: center;
-  gap: 12px;
-  margin-bottom: 2rem;
+  gap: 20px;
+  padding: 25px;
   flex-wrap: wrap;
-  width: 100%;
 }
 
 .tab-button {
-  background: white;
+  padding: 18px 28px;
   border: none;
-  padding: 14px 22px;
-  border-radius: 14px;
+  border-radius: 20px;
+  background: white;
   cursor: pointer;
+  font-size: 1.5rem;
   font-weight: bold;
-  font-size: 1rem;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  transition: all 0.3s ease;
 }
 
 .tab-button.active {
-  background: #d88cff;
+  background: linear-gradient(135deg, #d88cff, #c56cf0);
   color: white;
+}
+
+.tab-button:hover {
+  transform: translateY(-3px);
+}
+
+/* CONTENIDO */
+main {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
 }
 
 .tab-content {
   display: none;
-  width: 100%;
 }
 
 .tab-content.active {
   display: block;
 }
 
+/* TARJETAS */
+.card {
+  background: rgba(255,255,255,0.75);
+  border-radius: 30px;
+  padding: 40px;
+  margin-bottom: 35px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.card h2 {
+  font-size: 3rem;
+  margin-bottom: 25px;
+}
+
+.card p {
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+/* TEXTAREA */
+textarea {
+  width: 100%;
+  min-height: 220px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 20px;
+  padding: 20px;
+  font-size: 1.5rem;
+  resize: vertical;
+}
+
+/* BLOQUES DE DÍAS BONITOS */
 .day-buttons {
   display: flex;
-  gap: 12px;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 18px;
+  margin: 30px 0;
 }
 
 .day-buttons button {
-  background: white;
+  width: 100%;
+  padding: 28px;
   border: none;
-  padding: 12px 18px;
-  border-radius: 12px;
-  cursor: pointer;
+  border-radius: 24px;
+  font-size: 2.2rem;
   font-weight: bold;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+  color: white;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
 }
 
+/* Colores individuales */
+.day-buttons button:nth-child(1) {
+  background: linear-gradient(135deg, #ff9ec4, #ff6fa5);
+}
+
+.day-buttons button:nth-child(2) {
+  background: linear-gradient(135deg, #c56cf0, #9b59b6);
+}
+
+.day-buttons button:nth-child(3) {
+  background: linear-gradient(135deg, #7ed6df, #22a6b3);
+}
+
+.day-buttons button:hover {
+  transform: translateY(-4px);
+}
+
+.day-buttons button:active {
+  transform: scale(0.98);
+}
+
+/* CONTENIDO DÍA */
 .day-content {
   display: none;
+  margin-top: 25px;
+  padding: 30px;
+  border-radius: 25px;
+  background: rgba(255,255,255,0.7);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
 }
 
 .day-content.active-day {
   display: block;
 }
 
-.person {
-  padding: 1rem;
-  border-radius: 14px;
-  margin: 0.8rem 0;
+.day-content h3 {
+  font-size: 3rem;
+  margin-bottom: 20px;
 }
 
-.marta {
-  background: #fff176;
+.day-content ul {
+  padding-left: 30px;
 }
 
-.marina {
-  background: #ffb74d;
+.day-content li {
+  font-size: 1.8rem;
+  margin-bottom: 14px;
+  line-height: 1.4;
 }
 
-.laura {
-  background: #ea80fc;
-}
-
-.elena {
-  background: #81c784;
-}
-
-.special {
-  font-weight: bold;
-  text-align: center;
-  margin-top: 1.5rem;
-  font-size: 1.1rem;
-}
-
-.room {
-  padding: 1rem 0;
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-/* TABLA DESKTOP */
-.desktop-table {
-  display: block;
+/* TABLA GASTOS */
+.expense-table {
   width: 100%;
   overflow-x: auto;
 }
@@ -163,149 +205,136 @@ h3 {
 table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px;
   background: white;
-  border-radius: 12px;
+  border-radius: 20px;
   overflow: hidden;
 }
 
-th,
+th {
+  background: #e8c8f0;
+  padding: 18px;
+  font-size: 1.4rem;
+}
+
 td {
-  padding: 1rem;
+  padding: 18px;
   text-align: center;
+  font-size: 1.3rem;
   border-bottom: 1px solid #ddd;
 }
 
-th {
-  background: #f3d1ff;
-}
-
-/* TARJETAS MÓVIL */
-.mobile-cards {
+/* GASTOS MÓVIL */
+.mobile-expenses {
   display: none;
 }
 
-.gasto-card {
+.expense-card {
   background: white;
-  padding: 1.2rem;
-  border-radius: 16px;
-  margin-bottom: 1rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  width: 100%;
+  padding: 25px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
 }
 
-.gasto-card p {
-  margin: 0.5rem 0;
-  line-height: 1.5;
+.expense-card h3 {
+  font-size: 2rem;
+  margin-bottom: 15px;
 }
 
-/* PREPARATIVOS */
-textarea {
-  width: 100%;
-  min-height: 180px;
-  border-radius: 14px;
-  border: none;
-  padding: 1rem;
-  font-size: 1rem;
-  resize: vertical;
+.expense-card p {
+  font-size: 1.4rem;
+  margin-bottom: 8px;
 }
 
-/* RESPONSIVE MÓVIL */
-@media (max-width: 768px) {
-  body {
-    overflow-x: hidden;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-
-  h2 {
-    font-size: 1.7rem;
-  }
-
-  h3 {
-    font-size: 1.3rem;
-  }
-
-  main {
-    padding: 0.8rem;
-  }
-
-  .card {
-    padding: 1rem;
-    border-radius: 20px;
-  }
-
-  .tab-button,
-  .day-buttons button {
-    width: 100%;
-    font-size: 1rem;
-    padding: 14px;
-  }
-
-  .room {
-    font-size: 1.1rem;
-    line-height: 1.5;
-  }
-
-  /* OCULTAR TABLA EN MÓVIL */
-  .desktop-table {
-    display: none;
-  }
-
-  /* MOSTRAR TARJETAS */
-  .mobile-cards {
-    display: block;
-    width: 100%;
-  }
-
-  .gasto-card {
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-}
-
+/* GASTOS GRUPALES */
 .group-expense {
-  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .group-expense label {
-  display: block;
+  font-size: 1.4rem;
   font-weight: bold;
-  margin-bottom: 0.5rem;
 }
 
 .group-expense input {
   width: 100%;
-  padding: 12px;
+  padding: 15px;
   border: none;
-  border-radius: 12px;
-  font-size: 1rem;
+  border-radius: 15px;
+  font-size: 1.3rem;
 }
 
 .group-total {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-top: 1rem;
-}
-#music-toggle {
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  z-index: 9999;
-  background: white;
-  border: none;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  margin-top: 25px;
   font-size: 1.8rem;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-weight: bold;
 }
 
-#music-toggle:active {
-  transform: scale(0.95);
+/* RESPONSIVE */
+@media (max-width: 768px) {
+
+  .hero {
+    padding: 40px 15px;
+  }
+
+  .hero h1 {
+    font-size: 2.8rem;
+  }
+
+  .hero p {
+    font-size: 1.4rem;
+  }
+
+  #countdown {
+    font-size: 1.8rem;
+  }
+
+  #music-toggle {
+    width: 75px;
+    height: 75px;
+    font-size: 2.5rem;
+    top: 15px;
+    right: 15px;
+  }
+
+  .tab-button {
+    width: 100%;
+    font-size: 1.3rem;
+  }
+
+  .card {
+    padding: 25px;
+  }
+
+  .card h2 {
+    font-size: 2.2rem;
+  }
+
+  .card p {
+    font-size: 1.3rem;
+  }
+
+  .day-buttons button {
+    font-size: 1.7rem;
+    padding: 20px;
+  }
+
+  .day-content h3 {
+    font-size: 2.2rem;
+  }
+
+  .day-content li {
+    font-size: 1.4rem;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-expenses {
+    display: block;
+  }
 }

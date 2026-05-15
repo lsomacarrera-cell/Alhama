@@ -25,15 +25,37 @@ setInterval(updateCountdown, 1000 * 60 * 60);
 
 /* MÚSICA */
 function playMusic() {
-  if (music && !musicPlaying) {
-    music.play()
-      .then(() => {
-        musicPlaying = true;
-        if (musicToggle) musicToggle.textContent = "🔊";
-      })
-      .catch(() => {
-        console.log("El navegador bloqueó autoplay hasta interacción humana, como siempre.");
-      });
+  if (!music) {
+    alert("No se encontró el archivo de música.");
+    return;
+  }
+
+  music.volume = 1.0;
+
+  music.play()
+    .then(() => {
+      musicPlaying = true;
+      if (musicToggle) musicToggle.textContent = "🔊";
+      console.log("Música reproduciéndose");
+    })
+    .catch(error => {
+      console.log("Error reproduciendo:", error);
+      alert("El navegador está bloqueando el audio o el archivo no carga.");
+    });
+}
+
+function toggleMusic() {
+  if (!music) {
+    alert("No se encontró el audio.");
+    return;
+  }
+
+  if (music.paused) {
+    playMusic();
+  } else {
+    music.pause();
+    musicPlaying = false;
+    if (musicToggle) musicToggle.textContent = "🔇";
   }
 }
 

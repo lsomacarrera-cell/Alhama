@@ -29,13 +29,8 @@ function openTab(tabName, element) {
 
   const selectedTab = document.getElementById(tabName);
 
-  if (selectedTab) {
-    selectedTab.classList.add("active");
-  }
-
-  if (element) {
-    element.classList.add("active");
-  }
+  if (selectedTab) selectedTab.classList.add("active");
+  if (element) element.classList.add("active");
 }
 
 /* DÍAS */
@@ -45,9 +40,7 @@ function openDay(dayName) {
 
   const selectedDay = document.getElementById(dayName);
 
-  if (selectedDay) {
-    selectedDay.classList.add("active-day");
-  }
+  if (selectedDay) selectedDay.classList.add("active-day");
 }
 
 /* GASTOS GRUPALES */
@@ -58,11 +51,8 @@ function updateGroupExpenses() {
   const totalGroup = bebidas + comida;
   const perPerson = totalGroup / 4;
 
-  const groupTotal = document.getElementById("group-total");
-  const perPersonDisplay = document.getElementById("per-person");
-
-  if (groupTotal) groupTotal.textContent = `${totalGroup.toFixed(2)}€`;
-  if (perPersonDisplay) perPersonDisplay.textContent = `${perPerson.toFixed(2)}€`;
+  document.getElementById("group-total").textContent = `${totalGroup.toFixed(2)}€`;
+  document.getElementById("per-person").textContent = `${perPerson.toFixed(2)}€`;
 
   const people = [
     { name: "marta", room: 175, treatment: 0 },
@@ -74,48 +64,53 @@ function updateGroupExpenses() {
   people.forEach(person => {
     const total = person.room + person.treatment + perPerson;
 
-    const otros = document.getElementById(`otros-${person.name}`);
-    const totalEl = document.getElementById(`total-${person.name}`);
-    const mobileOtros = document.getElementById(`mobile-otros-${person.name}`);
-    const mobileTotal = document.getElementById(`mobile-total-${person.name}`);
+    document.getElementById(`otros-${person.name}`).textContent = `${perPerson.toFixed(2)}€`;
+    document.getElementById(`total-${person.name}`).textContent = `${total.toFixed(2)}€`;
 
-    if (otros) otros.textContent = `${perPerson.toFixed(2)}€`;
-    if (totalEl) totalEl.textContent = `${total.toFixed(2)}€`;
-
-    if (mobileOtros) mobileOtros.textContent = `${perPerson.toFixed(2)}€`;
-    if (mobileTotal) mobileTotal.textContent = `${total.toFixed(2)}€`;
+    document.getElementById(`mobile-otros-${person.name}`).textContent = `${perPerson.toFixed(2)}€`;
+    document.getElementById(`mobile-total-${person.name}`).textContent = `${total.toFixed(2)}€`;
   });
 }
 
-/* MÚSICA - estilo ZeroStress */
+/* MÚSICA - VERSIÓN ULTRA SIMPLE */
+const audio = document.getElementById("musica");
+const musicBtn = document.getElementById("music-toggle");
 
-// Primer toque activa música
-document.addEventListener("click", () => {
-  const audio = document.getElementById("musica");
-  const btn = document.getElementById("music-toggle");
+if (audio) {
+  audio.load();
+  audio.volume = 1.0;
+}
 
+/* Primer toque real */
+document.addEventListener("click", iniciarMusica, { once: true });
+document.addEventListener("touchstart", iniciarMusica, { once: true });
+
+function iniciarMusica() {
   if (!audio) return;
 
-  if (audio.paused) {
-    audio.play().then(() => {
-      if (btn) btn.textContent = "🔇";
-    }).catch(() => {});
-  }
-}, { once: true });
+  audio.play()
+    .then(() => {
+      if (musicBtn) musicBtn.textContent = "🔇";
+      console.log("Música iniciada");
+    })
+    .catch(error => {
+      console.log("Error audio:", error);
+      alert("El archivo existe pero el navegador sigue bloqueándolo.");
+    });
+}
 
-// Botón parar/reanudar
+/* Botón */
 function toggleMusica() {
-  const audio = document.getElementById("musica");
-  const btn = document.getElementById("music-toggle");
-
   if (!audio) return;
 
   if (audio.paused) {
-    audio.play().catch(() => {});
-    if (btn) btn.textContent = "🔇";
+    audio.play()
+      .then(() => {
+        if (musicBtn) musicBtn.textContent = "🔇";
+      });
   } else {
     audio.pause();
-    if (btn) btn.textContent = "🎵";
+    if (musicBtn) musicBtn.textContent = "🎵";
   }
 }
 

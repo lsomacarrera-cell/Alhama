@@ -13,7 +13,7 @@ function updateCountdown() {
   }
 
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  countdown.innerHTML = `Quedan ${days} días para el finde del año 🧖‍♀️`;
+  countdown.innerHTML = `Quedan ${days} días para el finde del año 🎉`;
 }
 
 updateCountdown();

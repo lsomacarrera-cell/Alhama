@@ -99,7 +99,7 @@ if (mobileTotal) {
 
 /* GUARDAR PREPARATIVOS */
 function initPreparativos() {
-const textarea = document.getElementById("preparativos");
+const textarea = document.getElementById("preparativos-texto");
 
 if (!textarea) return;
 

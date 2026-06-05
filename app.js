@@ -27,27 +27,50 @@ function openTab(tabName, element) {
   contents.forEach(content => content.classList.remove("active"));
   buttons.forEach(button => button.classList.remove("active"));
 
-  const selectedTab = document.getElementById(tabName);
+  document.getElementById(tabName)?.classList.add("active");
+  element?.classList.add("active");
 
-  if (selectedTab) {
-    selectedTab.classList.add("active");
-  }
-
-  if (element) {
-    element.classList.add("active");
-  }
+  startMusic();
 }
 
 /* DÍAS */
 function openDay(dayName) {
-  const days = document.querySelectorAll(".day-content");
+  document.querySelectorAll(".day-content")
+    .forEach(day => day.classList.remove("active-day"));
 
-  days.forEach(day => day.classList.remove("active-day"));
+  document.getElementById(dayName)?.classList.add("active-day");
 
-  const selectedDay = document.getElementById(dayName);
+  startMusic();
+}
 
-  if (selectedDay) {
-    selectedDay.classList.add("active-day");
+/* MÚSICA */
+let musicStarted = false;
+
+function startMusic() {
+  const music = document.getElementById("music");
+
+  if (!music || musicStarted) return;
+
+  music.play()
+    .then(() => {
+      musicStarted = true;
+      document.getElementById("music-toggle").textContent = "🔊";
+    })
+    .catch(() => {
+      console.log("Audio bloqueado por el navegador");
+    });
+}
+
+function toggleMusic() {
+  const music = document.getElementById("music");
+  const button = document.getElementById("music-toggle");
+
+  if (music.paused) {
+    music.play();
+    button.textContent = "🔊";
+  } else {
+    music.pause();
+    button.textContent = "🔇";
   }
 }
 
@@ -59,11 +82,11 @@ function updateGroupExpenses() {
   const totalGroup = bebidas + comida;
   const perPerson = totalGroup / 4;
 
-  const groupTotal = document.getElementById("group-total");
-  const perPersonDisplay = document.getElementById("per-person");
+  document.getElementById("group-total").textContent =
+    `${totalGroup.toFixed(2)}€`;
 
-  if (groupTotal) groupTotal.textContent = `${totalGroup.toFixed(2)}€`;
-  if (perPersonDisplay) perPersonDisplay.textContent = `${perPerson.toFixed(2)}€`;
+  document.getElementById("per-person").textContent =
+    `${perPerson.toFixed(2)}€`;
 
   const people = [
     { name: "marta", room: 175, treatment: 0 },
@@ -75,16 +98,11 @@ function updateGroupExpenses() {
   people.forEach(person => {
     const total = person.room + person.treatment + perPerson;
 
-    const mobileOtros = document.getElementById(`mobile-otros-${person.name}`);
-    const mobileTotal = document.getElementById(`mobile-total-${person.name}`);
+    document.getElementById(`mobile-otros-${person.name}`).textContent =
+      `${perPerson.toFixed(2)}€`;
 
-    if (mobileOtros) {
-      mobileOtros.textContent = `${perPerson.toFixed(2)}€`;
-    }
-
-    if (mobileTotal) {
-      mobileTotal.textContent = `${total.toFixed(2)}€`;
-    }
+    document.getElementById(`mobile-total-${person.name}`).textContent =
+      `${total.toFixed(2)}€`;
   });
 }
 

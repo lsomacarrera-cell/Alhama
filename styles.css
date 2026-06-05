@@ -287,4 +287,23 @@ textarea {
   .expense-card p {
     font-size: 1.15rem;
   }
+
+  .music-link {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 14px 22px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #c77dff, #9d4edd);
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+}
+
+.music-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
 }

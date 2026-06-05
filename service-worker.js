@@ -1,4 +1,4 @@
-const CACHE_NAME = "app-alhama-v1";
+const CACHE_NAME = "app-alhama-v3";
 
 const urlsToCache = [
   "./",

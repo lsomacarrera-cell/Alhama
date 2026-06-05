@@ -55,7 +55,9 @@ function openDay(dayName) {
 function updateGroupExpenses() {
   const bebidas = parseFloat(document.getElementById("bebidas")?.value) || 0;
   const comida = parseFloat(document.getElementById("comida")?.value) || 0;
-
+localStorage.setItem("alhama_bebidas", bebidas);
+localStorage.setItem("alhama_comida", comida);
+  
   const totalGroup = bebidas + comida;
   const perPerson = totalGroup / 4;
 
@@ -95,7 +97,9 @@ if ("serviceWorker" in navigator) {
 /* PREPARATIVOS */
 document.addEventListener("DOMContentLoaded", () => {
   const preparativosArea = document.getElementById("preparativosArea");
-
+const bebidasInput = document.getElementById("bebidas");
+const comidaInput = document.getElementById("comida");
+  
   if (!preparativosArea) return;
 
   const saved = localStorage.getItem("alhama_preparativos");
@@ -103,7 +107,19 @@ document.addEventListener("DOMContentLoaded", () => {
   if (saved) {
     preparativosArea.value = saved;
   }
+const savedBebidas = localStorage.getItem("alhama_bebidas");
+const savedComida = localStorage.getItem("alhama_comida");
 
+if (bebidasInput && savedBebidas !== null) {
+  bebidasInput.value = savedBebidas;
+}
+
+if (comidaInput && savedComida !== null) {
+  comidaInput.value = savedComida;
+}
+
+updateGroupExpenses();
+  
   preparativosArea.addEventListener("input", () => {
     localStorage.setItem(
       "alhama_preparativos",

@@ -287,4 +287,18 @@ textarea {
   .expense-card p {
     font-size: 1.15rem;
   }
+  #music-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 75px;
+  height: 75px;
+  border: none;
+  border-radius: 50%;
+  background: white;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 9999;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+}
 }

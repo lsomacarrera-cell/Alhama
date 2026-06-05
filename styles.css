@@ -306,4 +306,43 @@ textarea {
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(0,0,0,0.2);
 }
+  /* TARJETAS SÁBADO */
+
+.schedule-card {
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.schedule-card h4 {
+  margin-bottom: 12px;
+  font-size: 1.5rem;
+}
+
+.schedule-card p {
+  margin-bottom: 6px;
+}
+
+/* Colores primas */
+
+.marta-card {
+  background: #fff3b0;
+}
+
+.marina-card {
+  background: #ffd6a5;
+}
+
+.laura-card {
+  background: #ffc8dd;
+}
+
+.elena-card {
+  background: #d8f3dc;
+}
+
+.extra-card {
+  background: #caf0f8;
+}
 }

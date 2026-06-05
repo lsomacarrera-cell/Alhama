@@ -92,3 +92,22 @@ function updateGroupExpenses() {
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("service-worker.js");
 }
+/* PREPARATIVOS */
+document.addEventListener("DOMContentLoaded", () => {
+  const preparativosArea = document.getElementById("preparativosArea");
+
+  if (!preparativosArea) return;
+
+  const saved = localStorage.getItem("alhama_preparativos");
+
+  if (saved) {
+    preparativosArea.value = saved;
+  }
+
+  preparativosArea.addEventListener("input", () => {
+    localStorage.setItem(
+      "alhama_preparativos",
+      preparativosArea.value
+    );
+  });
+});

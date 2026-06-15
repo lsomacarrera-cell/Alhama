@@ -68,10 +68,10 @@ localStorage.setItem("alhama_comida", comida);
   if (perPersonDisplay) perPersonDisplay.textContent = `${perPerson.toFixed(2)}€`;
 
   const people = [
-    { name: "marta", room: 175, treatment: 0 },
-    { name: "marina", room: 175, treatment: 0 },
+    { name: "marta", room: 175, treatment: 76 },
+    { name: "marina", room: 175, treatment: 98 },
     { name: "laura", room: 175, treatment: 72 },
-    { name: "elena", room: 175, treatment: 155 }
+    { name: "elena", room: 175, treatment: 67 }
   ];
 
   people.forEach(person => {

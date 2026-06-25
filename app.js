@@ -8,7 +8,8 @@ function updateCountdown() {
   const now = new Date();
 
   if (now >= endTripDate) {
-    countdown.innerHTML = "💙 Gracias por un fin de semana inolvidable.<br>¡Hasta la próxima escapada! 🥂";
+    countdown.innerHTML =
+      "💙 Gracias por un fin de semana inolvidable.<br>¡Hasta la próxima escapada! 🥂";
     return;
   }
 
@@ -20,8 +21,11 @@ function updateCountdown() {
   const diff = tripDate - now;
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
-  countdown.innerHTML = `Quedan ${days} días para el finde del año 🎉`;
+  countdown.innerHTML = `⏳ Alhama empieza en ${days} día${days === 1 ? "" : "s"}`;
 }
+
+updateCountdown();
+setInterval(updateCountdown, 1000 * 60 * 60);
 
 /* PESTAÑAS */
 function openTab(tabName, element) {
@@ -59,9 +63,10 @@ function openDay(dayName) {
 function updateGroupExpenses() {
   const bebidas = parseFloat(document.getElementById("bebidas")?.value) || 0;
   const comida = parseFloat(document.getElementById("comida")?.value) || 0;
-localStorage.setItem("alhama_bebidas", bebidas);
-localStorage.setItem("alhama_comida", comida);
-  
+
+  localStorage.setItem("alhama_bebidas", bebidas);
+  localStorage.setItem("alhama_comida", comida);
+
   const totalGroup = bebidas + comida;
   const perPerson = totalGroup / 4;
 
@@ -98,12 +103,13 @@ localStorage.setItem("alhama_comida", comida);
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("service-worker.js");
 }
+
 /* PREPARATIVOS */
 document.addEventListener("DOMContentLoaded", () => {
   const preparativosArea = document.getElementById("preparativosArea");
-const bebidasInput = document.getElementById("bebidas");
-const comidaInput = document.getElementById("comida");
-  
+  const bebidasInput = document.getElementById("bebidas");
+  const comidaInput = document.getElementById("comida");
+
   if (!preparativosArea) return;
 
   const saved = localStorage.getItem("alhama_preparativos");
@@ -111,19 +117,20 @@ const comidaInput = document.getElementById("comida");
   if (saved) {
     preparativosArea.value = saved;
   }
-const savedBebidas = localStorage.getItem("alhama_bebidas");
-const savedComida = localStorage.getItem("alhama_comida");
 
-if (bebidasInput && savedBebidas !== null) {
-  bebidasInput.value = savedBebidas;
-}
+  const savedBebidas = localStorage.getItem("alhama_bebidas");
+  const savedComida = localStorage.getItem("alhama_comida");
 
-if (comidaInput && savedComida !== null) {
-  comidaInput.value = savedComida;
-}
+  if (bebidasInput && savedBebidas !== null) {
+    bebidasInput.value = savedBebidas;
+  }
 
-updateGroupExpenses();
-  
+  if (comidaInput && savedComida !== null) {
+    comidaInput.value = savedComida;
+  }
+
+  updateGroupExpenses();
+
   preparativosArea.addEventListener("input", () => {
     localStorage.setItem(
       "alhama_preparativos",

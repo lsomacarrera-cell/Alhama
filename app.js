@@ -19,8 +19,11 @@ function updateCountdown() {
   }
 
   const diff = tripDate - now;
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
+if (days === 0) {
+  countdown.innerHTML = "⏳ ¡Hoy empieza Alhama!";
+} else {
   countdown.innerHTML = `⏳ Alhama empieza en ${days} día${days === 1 ? "" : "s"}`;
 }
 
